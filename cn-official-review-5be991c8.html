@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界杯 · 专题</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f9fc;
+            color: #1e2b3a;
+            line-height: 1.6;
+            padding: 0 1rem;
+        }
+
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 2rem 0 3rem;
+        }
+
+        /* hero 横幅 — 杂志封面感 */
+        .hero {
+            background: linear-gradient(135deg, #0d3b4f 0%, #1b6e7b 100%);
+            border-radius: 2rem 2rem 1rem 1rem;
+            padding: 3.5rem 2.5rem;
+            margin-bottom: 2.5rem;
+            color: #ebf7fa;
+            box-shadow: 0 12px 28px rgba(0, 50, 65, 0.18);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -15%;
+            width: 340px;
+            height: 340px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.88;
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+            border-left: 3px solid #7fcbcb;
+            padding-left: 1rem;
+        }
+
+        /* 网格卡片系统 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin: 2.2rem 0 2.8rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            padding: 1.8rem 1.6rem 2rem;
+            box-shadow: 0 6px 18px rgba(0, 65, 80, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.25s ease;
+            border: 1px solid #e0edf2;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 26px rgba(6, 86, 102, 0.08);
+            border-color: #b6d7de;
+        }
+
+        .card .icon {
+            font-size: 2.2rem;
+            line-height: 1;
+            margin-bottom: 0.6rem;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #0f3f4c;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .card p {
+            color: #2c4354;
+            font-size: 0.95rem;
+            flex: 1;
+        }
+
+        .card .tag {
+            display: inline-block;
+            margin-top: 1rem;
+            background: #dceef3;
+            color: #0f4b57;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            align-self: flex-start;
+        }
+
+        /* 三段式介绍 */
+        .essay {
+            background: #ffffff;
+            border-radius: 1.8rem;
+            padding: 2rem 2rem 2.2rem;
+            margin: 2.5rem 0 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 50, 60, 0.04);
+            border: 1px solid #dbeaf0;
+        }
+
+        .essay h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #0d4453;
+            letter-spacing: -0.02em;
+            border-bottom: 2px solid #b5d9e0;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .essay p {
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+            color: #1d3342;
+        }
+
+        .essay p:last-child {
+            margin-bottom: 0;
+        }
+
+        .essay a {
+            color: #0b6879;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dashed #79b8c4;
+            transition: border-color 0.2s;
+        }
+
+        .essay a:hover {
+            border-bottom: 1px solid #0b6879;
+        }
+
+        /* 页尾提示 */
+        .footer-note {
+            background: #e1f0f4;
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            margin-top: 2.5rem;
+            border: 1px solid #cbe2e9;
+        }
+
+        .footer-note p {
+            font-size: 0.95rem;
+            color: #164d5b;
+        }
+
+        .footer-note a {
+            color: #0a5e6d;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid #6aaab9;
+        }
+
+        .footer-note a:hover {
+            border-bottom: 1px solid #0b5c6b;
+        }
+
+        .fine-line {
+            color: #5f7f89;
+            font-size: 0.8rem;
+            margin-top: 2rem;
+            text-align: right;
+            border-top: 1px solid #cfe1e8;
+            padding-top: 1.2rem;
+        }
+
+        /* 移动端适应 */
+        @media (max-width: 640px) {
+            body {
+                padding: 0 0.75rem;
+            }
+
+            .hero {
+                padding: 2.2rem 1.5rem;
+                border-radius: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero .sub {
+                font-size: 1rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .essay {
+                padding: 1.5rem 1.2rem;
+                border-radius: 1.2rem;
+            }
+
+            .essay h2 {
+                font-size: 1.3rem;
+            }
+
+            .footer-note {
+                padding: 1.2rem 1rem;
+                border-radius: 1.4rem;
+            }
+        }
+
+        /* 极窄屏 */
+        @media (max-width: 380px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .card {
+                padding: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 杂志式首页横幅 -->
+    <header class="hero">
+        <h1>世界杯 · 赛事脉络与现场</h1>
+        <div class="sub">从预选赛到决赛圈，每一场对抗都在重塑足球版图</div>
+    </header>
+
+    <!-- 背景说明 + 杂志格调卡片网格 -->
+    <div class="grid">
+        <div class="card">
+            <div class="icon">🏆</div>
+            <h3>百年赛事积淀</h3>
+            <p>1930 年首届至今，世界杯已成为全球最受瞩目的单项体育盛会。跨越近一个世纪，赛制、场地与转播技术不断革新，但竞争的本色从未改变。</p>
+            <span class="tag">历史</span>
+        </div>
+        <div class="card">
+            <div class="icon">🌍</div>
+            <h3>六大洲版图</h3>
+            <p>从南美到亚洲，从欧洲到非洲，预选赛覆盖两百余个协会。每届决赛圈 32 支（2026 年起 48 支）球队代表各自大洲展开对话，地域风格激烈碰撞。</p>
+            <span class="tag">地理</span>
+        </div>
+        <div class="card">
+            <div class="icon">⚽</div>
+            <h3>数据与战术演进</h3>
+            <p>控球率、预期进球、高位逼抢……现代世界杯不仅是体能与技术的较量，战术博弈与数据分析同样深刻影响着比赛进程与结局。</p>
+            <span class="tag">现代</span>
+        </div>
+    </div>
+
+    <!-- 三段自然介绍 (杂志专题式长文) -->
+    <div class="essay">
+        <h2>从绿茵到文化符号</h2>
+        <p>世界杯早已超越体育范畴，成为一种全球性的文化现象。决赛之夜数以亿计的观众同时关注一座奖杯的归属，而赛场外，球迷、媒体、品牌与主办城市共同构建起庞大的叙事网络。每一届赛事都在书写新的故事：冷门、逆转、新星崛起、老将谢幕。这些瞬间构成了足球运动最动人的底色。</p>
+        <p>在赛事组织层面，国际足联与各会员协会协调预选赛档期、场馆标准、安保与转播权，运作体系极为复杂。对于普通观众而言，了解赛程、分组、球队动态是深入观赛的基础。如果希望系统掌握最新赛事信息与历史数据，不妨浏览 <a href="https://cn-official-worldcup.com">世界杯</a> 的专题版块，那里整合了历届成绩、预选赛走势与决赛圈前瞻。</p>
+        <p>回到比赛本身，球员的技术风格往往折射出地域足球哲学：巴西的灵动、德国的严谨、阿根廷的激情、法国的全面……世界杯恰好提供了最直观的对比舞台。四年的等待周期让每一场比赛都沉淀了更多期待，也正是这种周期感，让足球世界始终保有新鲜感与仪式感。</p>
+    </div>
+
+    <!-- FAQ 摘要 — 轻量卡片式，不展开全部但给出方向 -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 1.8rem 0 0.6rem;">
+        <div style="background: #eef7fa; border-radius: 1rem; padding: 1rem 1.2rem;">
+            <span style="font-weight: 600; color: #094c5b;">❓ 世界杯几年一届？</span>
+            <p style="font-size: 0.9rem; margin-top: 0.3rem; color: #1c4655;">每四年举办一届，因夏季与冬季举办时间有所区分（2022 年卡塔尔世界杯在冬季举办）。</p>
+        </div>
+        <div style="background: #eef7fa; border-radius: 1rem; padding: 1rem 1.2rem;">
+            <span style="font-weight: 600; color: #094c5b;">❓ 如何获取官方赛程？</span>
+            <p style="font-size: 0.9rem; margin-top: 0.3rem; color: #1c4655;">预选赛及决赛圈完整赛程可前往 <a href="https://cn-official-worldcup.com" style="color:#097383;text-decoration: underline dotted;">世界杯</a> 赛事日历页面查阅。</p>
+        </div>
+    </div>
+
+    <!-- 页尾访问提示（自然嵌入链接） -->
+    <div class="footer-note">
+        <p>📋 本文基于公开赛事资料整理，旨在提供简洁且清晰的背景介绍。关于本届及历届赛事的深度数据、分组对阵与球队档案，均收录于 <a href="https://cn-official-worldcup.com">世界杯</a> 信息页，欢迎持续关注。</p>
+    </div>
+
+    <!-- 极低调的种子标记（按照要求只用于变化，不显示） 实际已隐藏 -->
+    <!-- 留空不显示任何种子 -->
+
+    <div class="fine-line">
+        内容参考 · 赛事公开信息
+    </div>
+</div>
+</body>
+</html>
